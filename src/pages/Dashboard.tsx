@@ -36,7 +36,7 @@ const Dashboard = () => {
             setAppointments(data);
         }
         fetchData();
-    }, [])
+    }, [token, setAppointments])
 
     return (
         <div className='container'>
