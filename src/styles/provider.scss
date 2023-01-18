@@ -1,0 +1,35 @@
+$textColor: rgb(168,168,168);
+$primary: rgb(88,0,255);
+
+.provider__info{
+    p{
+        color: $textColor;
+    }
+    &__name{
+        margin-top: 10px;
+        font-size: 20px;
+    }
+    &__phone{
+        font-size: 12px;
+    }
+    &__time{
+        display: flex;
+        margin-top: 5px;
+        &__item{
+            margin: 5px;
+            background: none;
+            border: 2px solid $primary;
+            border-radius: 2em;
+            color: $primary;
+            cursor: pointer;
+            transition: all 0.5s;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+        &__item:hover{
+            background-color: $primary;
+            color: white;
+        }
+    }
+}

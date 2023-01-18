@@ -1,0 +1,16 @@
+$bgColor: rgb(24,25,32);
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  background-color: $bgColor;
+}
+
+p{
+  margin: 0;
+  padding: 0;
+}

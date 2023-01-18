@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AuthContext } from './context/AuthContext';
+import Login from './pages/Login';
+import ProtectedRoute from './utils/ProtectedRoute';
+import Dashboard from './pages/Dashboard';
+
+import './App.scss';
+import { DataContext } from './context/DataContext';
+import { ISchedule } from './utils/types';
 
 function App() {
+  const [token, setToken] = useState<string>('');
+  const [appointments, setAppointments] = useState<ISchedule[]>([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={{token, setToken}}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={
+              <ProtectedRoute >
+                <DataContext.Provider value={{appointments, setAppointments}}>
+                  <Dashboard />
+                </DataContext.Provider>
+              </ProtectedRoute>
+            } 
+          />
+          <Route path='/login' element={<Login />} />
+        </Routes>
+      </BrowserRouter>  
+    </AuthContext.Provider>
   );
 }
 
